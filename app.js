@@ -21,10 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/')));
-http.listen(5000, function () {
-    console.log('listening on *:5000');
-
-});
+app.set('port', (process.env.PORT || 5000));
 
 fs.readFile('./num.txt', 'utf8', function (err,data) {
     if (err) {
