@@ -3,7 +3,7 @@ var express = require('express');
     var server = require('http').createServer(app);
     var io = require('socket.io').listen(server);
 
-    server.listen(process.env.PORT || 3000);
+    // server.listen(process.env.PORT || 3000);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
