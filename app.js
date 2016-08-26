@@ -1,9 +1,7 @@
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var express = require('express');
-    var app = express();
-    var server = require('http').createServer(app);
-    var io = require('socket.io').listen(server);
-
-    // server.listen(process.env.PORT || 3000);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -11,7 +9,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var num = 0;
-//wut
 app.get('/', function (req, res) {
     res.sendfile('./index.html');
 });
@@ -24,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/')));
-http.listen(function () {
+http.listen(3000, function () {
     console.log('listening on *:3000');
 
 });
@@ -36,7 +33,7 @@ fs.readFile('./num.txt', 'utf8', function (err,data) {
     console.log(data);
     num = parseInt(data);
 });
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
     io.sockets.emit('update', num);
     fs.readFile('./num.txt', 'utf8', function (err,data) {
         if (err) {

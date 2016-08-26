@@ -62,6 +62,7 @@
     var socket = io();
     socket.on('update', function (num) {
         var loop = num;
+        var rings = 0;
     $(".quant").html(num + "");
         $(".rings").html("");
 //        for(x = num; x > 0; x--){
@@ -75,8 +76,17 @@
             setTimeout(function () {
             if(loop > 0){
                 loop--;
-                $(".rings").append("<img src='https://cdn0.rubylane.com/shops/preciousandrarepieces/G2233.1L.jpg' class='animated slideInDown' style='display:inline-block; height: 5%; width: 5%'>");
-                addRing();
+                rings++;
+                if(rings < num + 1 ){
+
+                    $(".rings").append("<img src='https://cdn0.rubylane.com/shops/preciousandrarepieces/G2233.1L.jpg' class='animated slideInDown' style='display:inline-block; height: 5%; width: 5%'>");
+                    console.log("Loop: " + loop + " Num: " + num + " Rings: " + rings);
+                    addRing();
+
+                }
+
+            }else{
+                rings = 0;
             }
             }, 500)
         }
