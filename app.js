@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var num = 0;
+//wut
 app.get('/', function (req, res) {
     res.sendfile('./index.html');
 });
